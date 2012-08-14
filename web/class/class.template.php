@@ -1,0 +1,60 @@
+<?php
+
+////////////////////////////
+//Output/internal encoding.
+////////////////////////////
+mb_internal_encoding ('UTF-8');
+mb_http_output ('UTF-8');
+
+////////////////////////////
+////////////////////////////////////
+//Class template. 
+//Class description goes here.
+////////////////////////////////////
+//Class name.
+class template {
+
+    //Variables.
+    public $variable;
+    private $variable;
+    protected $variable;
+
+    ////////////////////////////
+    //Constructor.
+    ////////////////////////////
+    public function __construct () {
+        
+    }
+
+    ////////////////////////////
+    //Public class methods.
+    ////////////////////////////
+    public function func_public () {
+        
+    }
+
+    ////////////////////////////
+    //Private class methods.
+    ////////////////////////////
+    private function func_private () {
+        
+    }
+
+    ////////////////////////////
+    //Protected class methods.
+    ////////////////////////////
+    protected function func_protected () {
+        
+    }
+
+    ////////////////////////////
+    //Destructor.
+    ////////////////////////////
+    public function __destruct () {
+        
+    }
+
+}
+
+////////////////////////////////////
+?>
