@@ -4,8 +4,8 @@ call bat\SetupSDK.bat
 call bat\SetupApplication.bat
 
 :target
-goto desktop
-::goto android-debug
+::goto desktop
+goto android-debug
 ::goto android-test
 ::goto ios-debug
 ::goto ios-test
@@ -14,7 +14,9 @@ goto desktop
 :desktop
 :: http://help.adobe.com/en_US/air/build/WSfffb011ac560372f-6fa6d7e0128cca93d31-8000.html
 
+::320 x 480
 ::set SCREEN_SIZE=HVGA
+::480 x 762
 set SCREEN_SIZE=NexusOne
 ::set SCREEN_SIZE=iPhoneRetina
 

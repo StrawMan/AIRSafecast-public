@@ -39,7 +39,7 @@ package com.mobiledesign.airsafecast {
 		private var _ot_lon:String;
 		
 		//Safecast API key. https://api.safecast.org
-		private var _safecast_api_key:String = '';
+		private var _safecast_api_key:String = 'Ubidpy7zpHCFTxcREUCq';
 		
 		//Custom class instances.
 		private var _safecastmap:Map;
@@ -108,9 +108,9 @@ package com.mobiledesign.airsafecast {
 			//////////////////////////////
 			//Latitude & Longitude popup display.
 			//////////////////////////////
-			_latlong_popup_bg = _ui.drawMatte(2, 0xffffff, 0x000000, 5, (_app_height - 100), 155, 30, 'roundrect', 10, 10, 0.8, true, 'latlong_popup_bg');
+			_latlong_popup_bg = _ui.drawMatte(2, 0xffffff, 0x000000, 5, (_app_height - 100), 170, 30, 'roundrect', 10, 10, 0.7, true, 'latlong_popup_bg');
 			addChild(_latlong_popup_bg);
-			_latlong_popup_txt = _ui.drawTextfield(Fontlib.DroidSans, 0, 0, 0xffffff, 5, 5, 155, 20, 16, false, 0xffffff, false, 0x8CC63F, 'dynamic', 'left', false, '_latlong_popup_txt', false, true, true, false);
+			_latlong_popup_txt = _ui.drawTextfield(Fontlib.DroidSans, 0, 0, 0xffffff, 5, 5, 165, 20, 16, false, 0xffffff, false, 0x8CC63F, 'dynamic', 'left', false, '_latlong_popup_txt', false, true, true, false);
 			_latlong_popup_bg.addChild(_latlong_popup_txt);
 			//////////////////////////////
 			
@@ -129,7 +129,7 @@ package com.mobiledesign.airsafecast {
 			safecast_icon.y = 12;
 			safecast_icon.alpha = 0.5;
 			safecast_icon.name = 'safecast_icon';
-			_nominatim_popup_bg = _ui.drawMatte(2, 0xffffff, 0x000000, 5, 5, (_app_width - 10), 150, 'roundrect', 10, 10, 0.8, true, 'nominatim_popup_bg');
+			_nominatim_popup_bg = _ui.drawMatte(2, 0xffffff, 0x000000, 5, 5, (_app_width - 10), 150, 'roundrect', 10, 10, 0.7, true, 'nominatim_popup_bg');
 			addChild(_nominatim_popup_bg);
 			_nominatim_popup_bg.addChildAt(safecast_icon, 0);
 			//Legend.
@@ -148,8 +148,8 @@ package com.mobiledesign.airsafecast {
 			//Mic, line-in etc.
 			//CPM feedback/recording.
 			//////////////////////////////
-			var cpm_counter:AudioHandler = new AudioHandler();
-			addChild(cpm_counter);
+			//var cpm_counter:AudioHandler = new AudioHandler();
+			//addChild(cpm_counter);
 			//////////////////////////////
 		}
 		
@@ -205,7 +205,9 @@ package com.mobiledesign.airsafecast {
 			var lat_str:String = '&latitude=' + ot_lat;
 			var lon_str:String = '&longitude=' + ot_lon;
 			var dist_str:String = '&distance=1000';
-			var safecast_url:String = 'https://api.safecast.org/api/measurements.json?api_key=' + _safecast_api_key + lat_str + lon_str + dist_str;
+			var num_points_str:String = '&page_size=15';
+			var num_pages_str:String = '&page=1';
+			var safecast_url:String = 'https://api.safecast.org/api/measurements.json?api_key=' + _safecast_api_key + lat_str + lon_str + dist_str + num_points_str + num_pages_str;
 			//Safecast API.
 			_safecastdata = new Httpserv(safecast_url, 'GET', 'text', null);
 			//HTTP service listener.

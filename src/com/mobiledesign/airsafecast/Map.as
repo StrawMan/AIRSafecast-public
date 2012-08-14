@@ -182,7 +182,7 @@ package com.mobiledesign.airsafecast {
 			map.mapFriction = 1.8;
 			map.mapType = 'map';
 			map.name = 'Safecast - Japan';
-			map.showMobileCursor = true;
+			map.showMobileCursor = false;
 			//Add controls. Position based on device orientation.
 			switch (orient_str) {
 				case 'landscape':
