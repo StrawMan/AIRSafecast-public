@@ -117,6 +117,7 @@ package com.mobiledesign.airsafecast {
 			poi.infoContent = (strContent);
 			//Custom icon.
 			var ico:MapIcon = new MapIcon();
+			ico.cacheAsBitmap = true;
 			//Colour of point based on severity of contamination.
 			switch (true) {
 				//Green.
@@ -183,6 +184,7 @@ package com.mobiledesign.airsafecast {
 			map.mapType = 'map';
 			map.name = 'Safecast - Japan';
 			map.showMobileCursor = false;
+			map.cacheAsBitmap = true;
 			//Add controls. Position based on device orientation.
 			switch (orient_str) {
 				case 'landscape':

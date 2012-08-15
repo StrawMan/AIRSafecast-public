@@ -98,7 +98,7 @@ package com.mobiledesign.airsafecast {
 			if (dpshadow) {
 				_matte.filters = [_dropShadow];
 			}
-			_matte.cacheAsBitmap;
+			_matte.cacheAsBitmap = true;
 			return _matte;
 		}
 		
@@ -123,7 +123,7 @@ package com.mobiledesign.airsafecast {
 			_buttn.textField.thickness = thick;
 			_buttn.setStyle('textFormat', _txtformat);
 			_buttn.setStyle('embedFonts', true);
-			_buttn.cacheAsBitmap;
+			_buttn.cacheAsBitmap = true;
 			
 			_buttn.addEventListener(MouseEvent.MOUSE_OVER, btnOver);
 			_buttn.addEventListener(MouseEvent.MOUSE_OUT, btnOut);
@@ -150,7 +150,7 @@ package com.mobiledesign.airsafecast {
 			_pbuttn.x = xpos;
 			_pbuttn.y = ypos;
 			_pbuttn.skinClass = com.dgrigg.skins.ButtonImageSkin;
-			_pbuttn.cacheAsBitmap;
+			_pbuttn.cacheAsBitmap = true;
 			return _pbuttn;
 		}
 		
@@ -175,7 +175,7 @@ package com.mobiledesign.airsafecast {
 			_pb.source = source;
 			_pb.x = xpos;
 			_pb.y = ypos;
-			_pb.cacheAsBitmap;
+			_pb.cacheAsBitmap = true;
 			return _pb;
 		}
 		
@@ -196,7 +196,7 @@ package com.mobiledesign.airsafecast {
 		//Build callout menu.
 		//////////////////////////////
 		public function buildCallout(xpos:Number, ypos:Number, width:Number, height:Number, formdat:Array):UIDropWindow {
-			var callout:UIDropWindow = new UIDropWindow(this,     <null/>, new Attributes(0, 0, width, height));
+			var callout:UIDropWindow = new UIDropWindow(this,      <null/>, new Attributes(0, 0, width, height));
 			callout.x = xpos;
 			callout.y = ypos;
 			var form:UIFormMaker = new UIFormMaker(callout, width, height);
@@ -270,7 +270,7 @@ package com.mobiledesign.airsafecast {
 			_textfield.name = txtname;
 			_textfield.defaultTextFormat = _txtformat;
 			_textfield.setTextFormat(_txtformat);
-			_textfield.cacheAsBitmap;
+			_textfield.cacheAsBitmap = true;
 			return _textfield;
 		}
 		
@@ -295,7 +295,7 @@ package com.mobiledesign.airsafecast {
 			_slider.tickInterval = 5;
 			_slider.move(xpos, ypos);
 			_slider.validateNow();
-			_slider.cacheAsBitmap;
+			_slider.cacheAsBitmap = true;
 			return _slider;
 		}
 		
@@ -309,7 +309,7 @@ package com.mobiledesign.airsafecast {
 			_hslider.value = 1;
 			_hslider.tick = 1;
 			_hslider.horzGutter = 5;
-			_hslider.cacheAsBitmap;
+			_hslider.cacheAsBitmap = true;
 			_hslider.skinClass = com.dgrigg.skins.HSliderImageSkin;
 			return _hslider;
 		}

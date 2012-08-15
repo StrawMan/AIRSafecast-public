@@ -138,6 +138,7 @@ package com.mobiledesign.airsafecast {
 			rad_legend.y = 100;
 			rad_legend.alpha = 0.8;
 			rad_legend.name = 'rad_legend';
+			rad_legend.cacheAsBitmap = true;
 			_nominatim_popup_bg.addChildAt(rad_legend, 1);
 			//Scale nominatim popup.
 			_nominatim_popup_bg.addEventListener(MouseEvent.CLICK, nomPopUpClickHandler, false, 0, false);
