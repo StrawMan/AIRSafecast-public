@@ -62,9 +62,9 @@
     <element path="lib\ExtendedMadnessLib0_1_4.swc" />
     <element path="lib\MadComponentsLib0_7_2.swc" />
     <element path="lib\MQFlashMapsAPI_7.1.1_OSM_MOBILE.swc" />
-    <element path="lib\ExtendedMadnessLib0_1_5.swc" />
-    <element path="lib\MadComponentsLib0_7_3.swc" />
     <element path="lib\MadComponentsPureHelpers.swc" />
+    <element path="lib\MadComponentsLib0_7_6.swc" />
+    <element path="lib\ExtendedMadnessLib0_1_8.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

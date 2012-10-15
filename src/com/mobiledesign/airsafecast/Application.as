@@ -37,9 +37,12 @@ package com.mobiledesign.airsafecast {
 		private var _latlong_popup_txt:TextField;
 		private var _ot_lat:String;
 		private var _ot_lon:String;
+		private var _within_meters_bg:Sprite;
+		private var _within_meters_label_txt:TextField;
+		private var _within_meters_txt:TextField;
 		
 		//Safecast API key. https://api.safecast.org
-		private var _safecast_api_key:String = 'Ubidpy7zpHCFTxcREUCq';
+		private var _safecast_api_key:String = '';
 		
 		//Custom class instances.
 		private var _safecastmap:Map;
@@ -115,6 +118,21 @@ package com.mobiledesign.airsafecast {
 			//////////////////////////////
 			
 			//////////////////////////////
+			//Detection radius (meters).
+			//////////////////////////////
+			_within_meters_bg = _ui.drawMatte(2, 0xffffff, 0x000000, 5, (_app_height - 200), 170, 60, 'roundrect', 10, 10, 0.7, true, '_within_meters_bg');
+			addChild(_within_meters_bg);
+			_within_meters_label_txt = _ui.drawTextfield(Fontlib.DroidSans, 0, 0, 0xffffff, 5, 5, 160, 20, 14, true, 0x000000, false, 0x8CC63F, 'dynamic', 'left', false, '_within_meters_label_txt', false, true, true, false);
+			_within_meters_txt = _ui.drawTextfield(Fontlib.DroidSans, 0, 0, 0xffffff, 30, 35, 100, 20, 16, true, 0x000000, false, 0x8CC63F, 'input', 'center', true, '_within_meters_txt', false, true, true, false);
+			_within_meters_bg.addChild(_within_meters_label_txt);
+			_within_meters_bg.addChild(_within_meters_txt);
+			_within_meters_label_txt.text = 'Detection Radius (meters):';
+			_within_meters_txt.text = '700';
+			_within_meters_txt.maxChars = 6;
+			_within_meters_txt.restrict = '0-9';
+			//////////////////////////////
+			
+			//////////////////////////////
 			//Add activity indicator (on demand).
 			//////////////////////////////
 			_actind_demand = _ui.buildActivityIndicator((_app_width / 2), (_app_height / 2), _app_width, _app_height);
@@ -143,7 +161,7 @@ package com.mobiledesign.airsafecast {
 			//Scale nominatim popup.
 			_nominatim_popup_bg.addEventListener(MouseEvent.CLICK, nomPopUpClickHandler, false, 0, false);
 			//////////////////////////////
-			
+		
 			//////////////////////////////
 			//Audio device handling.
 			//Mic, line-in etc.
@@ -203,12 +221,16 @@ package com.mobiledesign.airsafecast {
 				_nominatim_popup_bg.removeChildAt(2);
 			}
 			//Construct query string.
+			var detect_radius:String = (_within_meters_txt.text == '') ? '700' : _within_meters_txt.text;
 			var lat_str:String = '&latitude=' + ot_lat;
 			var lon_str:String = '&longitude=' + ot_lon;
-			var dist_str:String = '&distance=1000';
-			var num_points_str:String = '&page_size=15';
+			var dist_str:String = '&distance=' + detect_radius;
+			var num_points_str:String = '&page_size=10';
 			var num_pages_str:String = '&page=1';
 			var safecast_url:String = 'https://api.safecast.org/api/measurements.json?api_key=' + _safecast_api_key + lat_str + lon_str + dist_str + num_points_str + num_pages_str;
+			
+			trace(safecast_url);
+			
 			//Safecast API.
 			_safecastdata = new Httpserv(safecast_url, 'GET', 'text', null);
 			//HTTP service listener.
