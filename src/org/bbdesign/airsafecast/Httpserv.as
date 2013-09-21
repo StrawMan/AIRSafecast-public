@@ -3,7 +3,7 @@
 //HTTPserv.as.
 //HTTPService/REST handler.
 //////////////////////////////
-package com.mobiledesign.airsafecast {
+package org.bbdesign.airsafecast {
 	import flash.display.*;
 	import flash.events.*;
 	import mx.rpc.http.*;

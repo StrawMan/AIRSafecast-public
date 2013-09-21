@@ -3,10 +3,11 @@
 //Interface.as.
 //UI elements.
 //////////////////////////////
-package com.mobiledesign.airsafecast {
+package org.bbdesign.airsafecast {
 	import flash.display.*;
 	import flash.events.*;
 	import flash.text.*;
+	import flash.text.engine.FontWeight;
 	import flash.filters.*;
 	import flash.geom.*;
 	//////////////////////////////
@@ -50,6 +51,7 @@ package com.mobiledesign.airsafecast {
 		private var _slider:Slider;
 		private var _hslider:HSlider;
 		private var _actind:Sprite;
+		private var _stxt:StageText;
 		
 		//////////////////////////////
 		//Constructor.
@@ -196,7 +198,7 @@ package com.mobiledesign.airsafecast {
 		//Build callout menu.
 		//////////////////////////////
 		public function buildCallout(xpos:Number, ypos:Number, width:Number, height:Number, formdat:Array):UIDropWindow {
-			var callout:UIDropWindow = new UIDropWindow(this,      <null/>, new Attributes(0, 0, width, height));
+			var callout:UIDropWindow = new UIDropWindow(this,         <null/>, new Attributes(0, 0, width, height));
 			callout.x = xpos;
 			callout.y = ypos;
 			var form:UIFormMaker = new UIFormMaker(callout, width, height);
@@ -312,6 +314,26 @@ package com.mobiledesign.airsafecast {
 			_hslider.cacheAsBitmap = true;
 			_hslider.skinClass = com.dgrigg.skins.HSliderImageSkin;
 			return _hslider;
+		}
+		
+		//////////////////////////////
+		//Build stageText instance.
+		//////////////////////////////
+		public function buildStagetext(stage:Stage, viewport:Rectangle, max_chars:int):StageText {
+			var stageTextInitOptions:StageTextInitOptions = new StageTextInitOptions(false);
+			_stxt = new StageText();
+			_stxt.maxChars = max_chars;
+			_stxt.restrict = '0-9';
+			_stxt.textAlign = 'center';
+			_stxt.softKeyboardType = SoftKeyboardType.NUMBER;
+			_stxt.returnKeyLabel = ReturnKeyLabel.DONE;
+			_stxt.fontSize = 18;
+			_stxt.fontWeight = FontWeight.BOLD;
+			_stxt.color = 0x000000;
+			_stxt.stage = stage;
+			_stxt.viewPort = viewport;
+			_stxt.assignFocus();
+			return _stxt;
 		}
 		
 		//////////////////////////////

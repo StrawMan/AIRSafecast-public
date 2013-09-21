@@ -1,7 +1,7 @@
 //////////////////////////////
 //Template class.
 //////////////////////////////
-package com.mobiledesign.airsafecast {
+package org.bbdesign.airsafecast {
 	import fl.controls.*;
 	import fl.data.*;
 	//////////////////////////////

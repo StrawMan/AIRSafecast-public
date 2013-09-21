@@ -39,9 +39,10 @@ set DIST_PATH=dist
 set DIST_NAME=AIRSafecast
 
 :: Debugging using a custom IP
-set DEBUG_IP=
+:: set DEBUG_IP=192.168.0.2
 
-
+:: Captive or shared runtime.
+set AIR_ANDROID_SHARED_RUNTIME=true
 
 :validation
 %SystemRoot%\System32\find /C "<id>%APP_ID%</id>" "%APP_XML%" > NUL

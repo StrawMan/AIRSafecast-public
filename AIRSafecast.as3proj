@@ -7,9 +7,9 @@
     <movie path="bin\AIRSafecast.swf" />
     <movie fps="30" />
     <movie width="480" />
-    <movie height="800" />
+    <movie height="762" />
     <movie version="3" />
-    <movie minorVersion="3" />
+    <movie minorVersion="8" />
     <movie platform="AIR Mobile" />
     <movie background="#FFFFFF" />
   </output>
@@ -20,9 +20,11 @@
   <!-- Build options -->
   <build>
     <option accessible="False" />
+    <option advancedTelemetry="False" />
     <option allowSourcePathOverlap="False" />
     <option benchmark="False" />
     <option es="False" />
+    <option inline="False" />
     <option locale="" />
     <option loadConfig="" />
     <option optimize="True" />
@@ -51,20 +53,18 @@
   <!-- SWC Libraries -->
   <libraryPaths>
     <element path="lib\tweener.swc" />
-    <element path="lib\ExtendedMadnessLib0_1_1.swc" />
-    <element path="lib\flComponentsBase.swc" />
-    <element path="lib\MadComponentsLib0_6_9.swc" />
+    <element path="" />
     <element path="lib\skinmincomps.swc" />
-    <element path="lib\MadComponentsLib0_7_1.swc" />
-    <element path="lib\ExtendedMadnessLib0_1_3.swc" />
+    <element path="lib\flComponentsBase.swc" />
+    <element path="lib\ExtendedMadnessLib0_1_1.swc" />
+    <element path="lib\MadComponentsLib0_6_9.swc" />
     <element path="lib\MicRecorder.swc" />
-    <element path="lib\MQFlashMapsAPI_7.0.9_OSM_MOBILE.swc" />
     <element path="lib\ExtendedMadnessLib0_1_4.swc" />
     <element path="lib\MadComponentsLib0_7_2.swc" />
-    <element path="lib\MQFlashMapsAPI_7.1.1_OSM_MOBILE.swc" />
     <element path="lib\MadComponentsPureHelpers.swc" />
-    <element path="lib\MadComponentsLib0_7_6.swc" />
-    <element path="lib\ExtendedMadnessLib0_1_8.swc" />
+    <element path="lib\ExtendedMadnessLib0_2_0b.swc" />
+    <element path="lib\MadComponentsLib0_7_8b.swc" />
+    <element path="lib\MQFlashMapsAPI_7.1.2b_OSM_MOBILE.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
@@ -76,7 +76,7 @@
   </rslPaths>
   <!-- Intrinsic Libraries -->
   <intrinsics>
-    <!-- example: <element path="..." /> -->
+    <element path="Library\AS3\frameworks\FlashIDE" />
   </intrinsics>
   <!-- Assets to embed into the output SWF -->
   <library>
@@ -84,11 +84,11 @@
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
-    <compile path="src\com\mobiledesign\airsafecast\Main.as" />
+    <compile path="src\org\bbdesign\airsafecast\Main.as" />
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>
-    <!-- example: <hidden path="..." /> -->
+    <hidden path="obj" />
   </hiddenPaths>
   <!-- Executed before build -->
   <preBuildCommand />

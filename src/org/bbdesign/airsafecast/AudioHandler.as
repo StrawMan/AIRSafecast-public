@@ -4,7 +4,7 @@
 //Audio/mic/line-in etc. 
 //Handling class.
 ///////////////////////////
-package com.mobiledesign.airsafecast {
+package org.bbdesign.airsafecast {
 	import flash.display.*;
 	import flash.events.*;
 	import flash.media.Microphone;

@@ -3,11 +3,13 @@
 //Map.as.
 //Map builder class.
 ///////////////////////////
-package com.mobiledesign.airsafecast {
+package org.bbdesign.airsafecast {
 	import flash.display.*;
 	import flash.geom.Point;
 	import flash.events.*;
 	import flash.text.*;
+	import flash.sensors.Geolocation;
+	import flash.system.Capabilities;
 	import mx.controls.*;
 	///////////////////////////
 	//Starling framework.
@@ -51,6 +53,7 @@ package com.mobiledesign.airsafecast {
 		//12+usv
 		[Embed(source="/../icons/radiation_black.png")]
 		public static var RadPointBlack:Class;
+		//////////////////////////////
 		
 		//////////////////////////////
 		//Internal class variables.
@@ -60,10 +63,18 @@ package com.mobiledesign.airsafecast {
 		private var _nominatim:Nominatim;
 		private var _app_width:Number;
 		private var _app_height:Number;
+		
+		private var _geo:Geolocation;
+		private var _geo_error:Number;
+		private var _geo_current_location:LatLng = new LatLng();
+		private var _geo_txt:TextField;
+		
+		private var _ui:Interface = new Interface();
 		//Public data.
 		public var nomdata:Object = {};
 		public var latlongover_point:String;
 		public var latlongclick_point:String;
+		//////////////////////////////
 		
 		//////////////////////////////
 		//Constructor.
@@ -76,11 +87,12 @@ package com.mobiledesign.airsafecast {
 			addChild(_map);
 			//Nominatim.
 			buildnominatim();
+			//Geolocation.
+			geolocator();
 			//Return mouse over/press/touch coordinates.
 			_map.addEventListener(MouseEvent.MOUSE_MOVE, onMouseOverTouchCoordinateHandler);
 			_map.addEventListener(TileMapEvent.CLICK, onMouseClickTouchCoordinateHandler);
 		}
-		
 		//////////////////////////////
 		
 		//////////////////////////////
@@ -90,7 +102,7 @@ package com.mobiledesign.airsafecast {
 		//////////////////////////////
 		
 		//////////////////////////////
-		//Build poi.
+		//Poi builder.
 		//////////////////////////////
 		public function buildpoi(latitude:Number, longitude:Number, reading_value:Number, reading_date:String):void {
 			//Latitude, longitude object.
@@ -149,6 +161,7 @@ package com.mobiledesign.airsafecast {
 			//Add to map.
 			_map.addShape(poi);
 		}
+		//////////////////////////////
 		
 		//////////////////////////////
 		//Remove poi.
@@ -157,6 +170,7 @@ package com.mobiledesign.airsafecast {
 			//Clean map. Remove 'pois'.
 			_map.removeShapes();
 		}
+		//////////////////////////////
 		
 		//////////////////////////////
 		//Return nominatim data.
@@ -166,6 +180,7 @@ package com.mobiledesign.airsafecast {
 			var ll:LatLng = new LatLng(Number(ot_lat), Number(ot_lon));
 			_nominatim.reverseByLatLng(ll);
 		}
+		//////////////////////////////
 		
 		//////////////////////////////
 		//////////////////////////////
@@ -177,7 +192,8 @@ package com.mobiledesign.airsafecast {
 		//Build map.
 		//////////////////////////////
 		private function buildmap(w:int, h:int, lat:Number, lon:Number, zoom:int, orient_str:String):TileMap {
-			var map:TileMap = new TileMap('Fmjtd%7Cluu2n10an9%2C7g%3Do5-hwawh');
+			//MapQuest dev key goes here. 
+			var map:TileMap = new TileMap('');
 			var position:LatLng = new LatLng(lat, lon);
 			map.size = new Size(w, h);
 			map.mapFriction = 1.8;
@@ -205,21 +221,53 @@ package com.mobiledesign.airsafecast {
 			map.declutter = force_declutter;
 			return map;
 		}
+		//////////////////////////////
 		
 		//////////////////////////////
 		//Build nominatim.
 		//////////////////////////////
 		private function buildnominatim():void {
-			_nominatim = new Nominatim();
+			_nominatim = new Nominatim(_map);
 			_nominatim.addEventListener(NominatimEvent.NOMINATIM_RESULT, onNominatimResult);
 			_nominatim.addEventListener(IOErrorEvent.IO_ERROR, onNominatimIOError);
 			_nominatim.addEventListener(NominatimEvent.HTTP_ERROR_EVENT, onNominatimHttpError);
 		}
+		//////////////////////////////
+		
+		//////////////////////////////
+		//Geolocation builder.
+		//////////////////////////////
+		public function geolocator():void {
+			_geo_txt = _ui.drawTextfield(Fontlib.DroidSans, 0, 0, 0xffffff, 0, (_app_height - 155), _app_width, 23, 14, true, 0x000000, false, 0x8CC63F, 'static', 'center', false, 'geo_txt', false, true, true, false);
+			_geo_txt.wordWrap = false;
+			_geo_txt.alpha = 0.8;
+			addChild(_geo_txt);
+			
+			if (Geolocation.isSupported) {
+				_geo = new Geolocation();
+				_geo.setRequestedUpdateInterval(60000);
+				_geo.addEventListener(GeolocationEvent.UPDATE, geolocationUpdateHandler);
+				_geo_txt.text = 'Getting position...';
+			} else {
+				_geo_txt.text = 'Geolocation not supported.';
+			}
+		}
+		//////////////////////////////
 		
 		//////////////////////////////
 		//////////////////////////////
 		//Event handling.
 		//////////////////////////////
+		//////////////////////////////
+		
+		//////////////////////////////
+		//Geolocation event handlers.
+		//////////////////////////////
+		private function geolocationUpdateHandler(e:GeolocationEvent):void {
+			var lat:String = e.latitude.toFixed(2);
+			var lon:String = e.longitude.toFixed(2);
+			_geo_txt.text = "Current latitude: " + lat + " / Current longitude: " + lon;
+		}
 		//////////////////////////////
 		
 		//////////////////////////////
@@ -229,6 +277,7 @@ package com.mobiledesign.airsafecast {
 		private function onPoiClickHander(e:MouseEvent):void {
 			e.stopImmediatePropagation();
 		}
+		//////////////////////////////
 		
 		//////////////////////////////
 		//Return mouse over/press/touch coordinates.
@@ -241,6 +290,7 @@ package com.mobiledesign.airsafecast {
 			latlongclick_point = _map.pixToLL(new Point(_map.mouseX, _map.mouseY)).toString();
 			dispatchEvent(new Event('MAP_TOUCH_COORD_COMPLETE', true));
 		}
+		//////////////////////////////
 		
 		//////////////////////////////
 		//Nominatim handlers.
@@ -256,15 +306,14 @@ package com.mobiledesign.airsafecast {
 			nomdata.road = (r.resultData.addressparts.road.length() > 0) ? "Road: " + r.resultData.addressparts.road : null;
 			dispatchEvent(new Event('NOMINATIM_COMPLETE', true));
 		}
-		
 		//Nominatim IO Error.
 		private function onNominatimIOError(e:IOErrorEvent):void {
 			trace("IO Error: " + e.text);
 		}
-		
 		//Nominatim HTTP Error.
 		private function onNominatimHttpError(e:NominatimEvent):void {
 			trace("HTTP Error: " + (e.errorEvent as IOErrorEvent).text);
 		}
+		//////////////////////////////
 	}
 }

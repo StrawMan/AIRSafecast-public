@@ -3,7 +3,7 @@
 //Main.as.
 //Document Class.
 ///////////////////////////
-package com.mobiledesign.airsafecast {
+package org.bbdesign.airsafecast {
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.desktop.NativeApplication;

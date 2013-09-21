@@ -3,7 +3,7 @@
 //Orientation.as.
 //Orientation handling.
 ///////////////////////////
-package com.mobiledesign.airsafecast {
+package org.bbdesign.airsafecast {
 	import flash.display.*;
 	import flash.events.*;
 	

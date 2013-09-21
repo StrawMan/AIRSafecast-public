@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<application xmlns="http://ns.adobe.com/air/application/3.3">
+<application xmlns="http://ns.adobe.com/air/application/3.8">
 	<id>air.com.mobiledesign.airsafecast.AIRSafecast</id>
 	<versionNumber>0.1</versionNumber>
 	<supportedProfiles>mobileDevice</supportedProfiles>
@@ -7,41 +7,25 @@
 	<name>AIRSafecast</name>
 	<android>
 		<manifestAdditions>
-			<![CDATA[<manifest android:installLocation="auto">
-	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch" />
-</manifest>]]>
+			<![CDATA[
+			<manifest android:installLocation="auto">
+				<uses-permission android:name="android.permission.INTERNET" />
+				<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+				<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch" />
+			</manifest>
+			]]>
 		</manifestAdditions>
 	</android>
-	<iPhone>
-		<InfoAdditions>
-			<![CDATA[<key>UIStatusBarStyle</key>
-<string>UIStatusBarStyleBlackOpaque</string>
-<key>UIRequiresPersistentWiFi</key>
-<string>NO</string>
-<key>UIPrerenderedIcon</key>
-<true />
-<key>UIApplicationExitsOnSuspend</key>
-<true />
-<key>UIDeviceFamily</key>
-<array>
-	<!-- iPhone support -->
-	<string>1</string>
-	<!-- iPad support -->
-	<!--<string>2</string>-->
-</array>]]>
-		</InfoAdditions>
-		<requestedDisplayResolution>high</requestedDisplayResolution>
-	</iPhone>
 	<initialWindow>
 		<title>AIRSafecast</title>
 		<content>AIRSafecast.swf</content>
 		<visible>true</visible>
-		<fullScreen>true</fullScreen>
-		<renderMode>direct</renderMode>
+		<fullScreen>false</fullScreen>
+		<renderMode>cpu</renderMode>
 		<autoOrients>true</autoOrients>
 		<aspectRatio>any</aspectRatio>
 		<systemChrome>standard</systemChrome>
+		<softKeyboardBehavior>pan</softKeyboardBehavior>
 	</initialWindow>
 	<icon>
 		<image72x72>icons/AIRSafecast72.png</image72x72>
