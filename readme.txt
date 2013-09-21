@@ -13,5 +13,6 @@ This is offset by the advantage of not having to download the shared runtime pri
 I also provide a build compiled against the shared runtime, which is significantly smaller, 
 but requires that one already have the AIR runtime library installed on their phone.
 
-Also note that present and future development will continue on the "public" branch, as opposed to the "default",
-which is no longer being maintained.
+These builds can be obtained from my working(and more frequently updated) BitBucket repository:
+
+https://bitbucket.org/StrawMan/airsafecast-public
